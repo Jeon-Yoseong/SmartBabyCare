@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="알림 설정" >
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="alarmBellSetting"
+            android:summaryOff="진동을 사용합니다."
+            android:summaryOn="알림음을 사용합니다."
+            android:title="알림/진동 설정" />
+
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:dependency="alarmBellSetting"
+            android:key="alarm_ringtone"
+            android:ringtoneType="notification"
+            android:showSilent="true"
+            android:title="알림 소리" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pushAlarmSetting"
+            android:summary="푸쉬 알림을 설정합니다."
+            android:switchTextOff="끔"
+            android:switchTextOn="켬"
+            android:title="푸쉬 알림 설정" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="아기 정보" >
+<!--
+        <EditTextPreference
+            android:key="addAgeData"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="number"
+            android:hint="개월"
+            android:title="아기 개월 수 입력" />
+
+        <EditTextPreference
+            android:key="addHeightData"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:hint="cm"
+            android:title="아기 키 입력" />
+
+        <EditTextPreference
+            android:key="addWeightData"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:hint="kg"
+            android:title="아기 몸무게 입력" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:key="babyMeals"
+            android:entries="@array/babyMealType"
+            android:entryValues="@array/babyMealType_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="아기 식사 방식" />
+-->
+        <Preference
+            android:title="아기 정보 수정"
+            android:key="member_info_update">
+            <intent
+                android:targetClass="com.example.kang.smartbabycare.MemberInfoUpdate"
+                android:targetPackage="com.example.kang.smartbabycare" />
+            </Preference>
+
+
+
+    </PreferenceCategory>
+
+
+
+
+
+</PreferenceScreen>

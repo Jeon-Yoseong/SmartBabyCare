@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawerlayout_analysis"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_analysis"
+            android:background="@color/color_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="?actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:minHeight="56dp" />
+
+        <ScrollView
+            android:id="@id/scrollView"
+            android:layout_width="fill_parent"
+            android:fillViewport="true"
+            android:layout_weight="9.0"
+            android:layout_below="@id/toolbar_analysis"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#e1dede">
+
+                <RelativeLayout
+                    android:id="@+id/heartbeat"
+                    android:background="#ffffffff"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="1.0dip">
+
+                    <TextView
+                        android:text="심박수"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2" />
+
+                    <com.ssu.sangjunianjuni.smartbabycare.Analysis.AnalysisSpecificGraphic
+                        android:id="@+id/heartbeatAnalysisGuiOutside"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/poop"
+                    android:background="#ffffffff"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="1.0dip">
+
+                    <TextView
+                        android:text="배변패턴"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView3" />
+
+                    <com.ssu.sangjunianjuni.smartbabycare.Analysis.AnalysisSpecificGraphic
+                        android:id="@+id/poopAnalysisGuiOutside"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/heightweight"
+                    android:background="#ffffffff"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="1.0dip">
+
+                    <TextView
+                        android:text="신장체중"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/totalall"
+                    android:background="#ffffffff"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="1.0dip">
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:id="@+id/drawerlist_analysis"
+        android:background="#ffededed"
+        android:layout_width="240.0dip"
+        android:layout_height="fill_parent" />
+</android.support.v4.widget.DrawerLayout>
+
+

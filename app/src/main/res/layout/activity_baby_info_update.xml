@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:gravity="center"
+    android:padding="10dp" >
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:textColor="#88878C"
+                android:textSize="25sp"
+                android:text="아기 정보 수정"/>
+
+            <ImageView
+                android:id="@+id/profile_photo_update"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/icon" />
+
+            <Button
+                android:id="@+id/profile_photo_update_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@color/btn_login"
+                android:textColor="@color/color_white"
+                android:text="프로필 사진 선택" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아기 키"
+                android:layout_marginRight="15dp"
+                android:background="#00ff0000"
+                android:textColor="@color/btn_login"
+                android:layout_weight="1" />
+
+
+            <EditText
+                android:id="@+id/register_baby_height_update"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_white"
+                android:hint="아기 키 입력"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_weight="10"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아기 몸무게"
+                android:layout_marginRight="15dp"
+                android:background="#00ff0000"
+                android:textColor="@color/btn_login"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/register_baby_weight_update"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_white"
+                android:hint="아기 몸무게 입력"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_weight="10"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+
+
+
+
+            <TextView
+                android:text="아기 식사 방식"
+                android:textColor="@color/color_white"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8_update" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_white">
+
+                <RadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/meal_select_group_update" >
+
+
+                    <RadioButton
+                        android:text="모유"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/btn_login"
+                        android:buttonTint="#88878C"
+                        android:id="@+id/moyou_update"
+                        android:checked="true"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:text="분유"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/btn_login"
+                        android:buttonTint="#88878C"
+                        android:id="@+id/bunyou_update"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:text="이유식"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/btn_login"
+                        android:buttonTint="#88878C"
+                        android:id="@+id/eyousik_update"
+                        android:layout_weight="1" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btn_update_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/btn_login"
+                    android:text="수정"
+                    android:textColor="@color/color_white"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btn_update_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/btn_login"
+                    android:text="취소"
+                    android:textColor="@color/color_white"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

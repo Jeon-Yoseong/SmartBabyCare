@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="babyMealType">
+        <item>모유 수유</item>
+        <item>분유</item>
+        <item>이유식</item>
+    </string-array>
+    <string-array name="babyMealType_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>

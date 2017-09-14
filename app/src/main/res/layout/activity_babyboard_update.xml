@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B9CCDB">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B9CCDB"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textPersonName"
+            android:background="#B9CCDB"
+            android:textSize="20sp"
+            android:ems="10"
+            android:id="@+id/board_title_update"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:ems="10"
+            android:lines="21"
+            android:background="@color/color_white"
+            android:scrollHorizontally="false"
+            android:id="@+id/board_context_update"
+            android:layout_weight="1" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btn_Board_Register_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/btn_login"
+            android:text="게시글 수정"
+            android:textColor="@color/color_white"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_Board_Cancel_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/btn_login"
+            android:text="취소"
+            android:textColor="@color/color_white"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:smartbabycare="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".babyboard.BabyBoardPage">
+
+    <item android:id="@+id/board_add"
+        android:icon="@drawable/ic_action_edit"
+        android:title="BoardAdd"
+        smartbabycare:showAsAction="ifRoom" />
+
+    <item android:id="@+id/board_search"
+        android:icon="@drawable/ic_action_search"
+        android:title="BoardSearch"
+        smartbabycare:showAsAction="ifRoom" />
+
+</menu>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ssu.sangjunianjuni.smartbabycare">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.LoginPage"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.RegisterPage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.MainPage"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.AnalysisPage"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.SettingPage"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.Analysis.HeartBeatAnalysis"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.Analysis.HeightWeightAnalysis"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.Analysis.PoopAnalysis"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.babyboard.BabyBoardPage"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.babyboard.BabyBoardUpdate"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.babyboard.BabyBoardWrite"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.babyboard.BabyBoardContents"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.BabyDiary.BabyDiaryContents"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.BabyDiary.BabyDiaryPage"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.BabyDiary.BabyDiaryWrite"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.BabyDiary.BabyDiaryUpdate"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.BabyInfoUpdate"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.UserAlarmPage" android:screenOrientation="portrait"/>
+        <receiver android:name="com.ssu.sangjunianjuni.smartbabycare.UserAlarm.UserAlarmReceiver">
+            <intent-filter>
+                <action android:name="AlarmReceiver"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.BlunoBluetooth.AlarmDialog" android:theme="@android:style/Theme.Dialog"> </activity>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.UserAlarm.UserAlarmSetPage" android:screenOrientation="portrait"/>
+        <activity android:name="com.ssu.sangjunianjuni.smartbabycare.UserAlarm.UserAlarmDialog" android:theme="@android:style/Theme.Dialog"/>
+        <service android:name="com.ssu.sangjunianjuni.smartbabycare.BluetoothAlarmService" android:exported="true" android:enabled="true"/>
+        <service android:name="com.ssu.sangjunianjuni.smartbabycare.UserAlarm.UserAlarmService" android:exported="true" android:enabled="true"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.ssu.sangjunianjuni.smartbabycare"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+
+        </provider>
+
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".AvoidSmartManagerReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+
+        <activity
+            android:name=".AvoidSmartManagerActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=":avoidSmartManager"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+        </activity>
+
+        <service android:name=".DeleteFirebaseTokenService"></service>
+
+        <service android:name=".BlunoBluetooth.RFduinoService" />
+
+    </application>
+
+</manifest>

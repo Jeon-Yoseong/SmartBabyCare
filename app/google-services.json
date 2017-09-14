@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "731702125378",
+    "firebase_url": "https://smart-babycare.firebaseio.com",
+    "project_id": "smart-babycare",
+    "storage_bucket": "smart-babycare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731702125378:android:7a942a633a2adcf2",
+        "android_client_info": {
+          "package_name": "com.ssu.sangjunianjuni.smartbabycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731702125378-54cak9fr29lp6g7borccnd8okuujq1nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTZIvt-6dIjDLg63bdMPHpLSu6b3G9PAY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

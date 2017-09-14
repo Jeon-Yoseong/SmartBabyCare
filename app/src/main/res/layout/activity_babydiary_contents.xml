@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/diary_contents_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="제목"
+                android:id="@+id/diary_content_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_white"
+                android:gravity="center"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="작성자"
+                    android:id="@+id/diary_content_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:text="작성시간"
+                    android:id="@+id/diary_content_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10" />
+
+                <Button
+                    android:id="@+id/diary_update"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#00ff0000"
+                    android:text="수정"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/diary_delete"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#00ff0000"
+                    android:text="삭제"
+                    android:textSize="10sp" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/diary_content_image"
+                android:layout_width="364dp"
+                android:layout_height="273dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="@color/color_white"
+                app:srcCompat="@drawable/login_image" />
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/color_white">
+
+
+                <TextView
+                    android:text="일기 내용"
+                    android:id="@+id/diary_content_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:layout_weight="1" />
+
+            </android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

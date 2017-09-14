@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람 제목"
+        android:id="@+id/alarmTitle"
+        android:textSize="25sp"
+        android:textColor="#88878C"
+
+        android:layout_marginStart="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람 시간"
+        android:id="@+id/alarmtime"
+        android:gravity="right"
+        android:textSize="15sp"
+        android:textColor="#88878C"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/alarmTitle"
+        android:layout_alignStart="@+id/alarmTitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람 반복여부"
+        android:id="@+id/alarmdaily"
+        android:layout_marginRight="5dp"
+        android:textSize="15sp"
+        android:textColor="#88878C"
+        android:layout_alignBaseline="@+id/onoffcheckbox"
+        android:layout_alignBottom="@+id/onoffcheckbox"
+        android:layout_toStartOf="@+id/onoffcheckbox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#88878C"
+        android:buttonTint="#88878C"
+        android:id="@+id/onoffcheckbox"
+        android:focusable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp" />
+
+</RelativeLayout>

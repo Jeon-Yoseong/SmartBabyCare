@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6B6B4" >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_useralarm"
+        android:layout_width="fill_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#F6B6B4"
+        android:minHeight="56dp"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/color_white"
+        android:id="@+id/alarmlist" />
+</LinearLayout>

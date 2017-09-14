@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B9CCDB">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B9CCDB"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B9CCDB"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+
+            <EditText
+                android:id="@+id/diary_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#B9CCDB"
+                android:ems="10"
+                android:hint="육아일기 제목을 입력하세요."
+                android:inputType="textPersonName"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/diary_photo"
+            android:layout_width="364dp"
+            android:layout_height="273dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:background="@color/color_white"
+            app:srcCompat="@drawable/login_image" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:clipToPadding="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:textSize="18sp"
+                android:hint="내용을 입력해주세요."
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:minHeight="250dp"
+                android:background="@color/color_white"
+                android:scrollHorizontally="false"
+                android:id="@+id/diary_context"
+                android:layout_weight="1" />
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/diary_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/btn_login"
+                android:text="육아일기 등록"
+                android:textColor="@color/color_white"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/diary_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/btn_login"
+                android:text="취소"
+                android:textColor="@color/color_white"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawerlayout_setting"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cbcbcb">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_setting"
+            android:background="@color/color_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="?actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:minHeight="56dp" />
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar_setting"
+            android:background="#ffffff"
+            android:layout_marginTop="0.5dp">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="알림 설정"
+                android:textColor="#2dbdae"
+                android:textSize="18dp"
+                android:layout_margin="12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setalarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title"
+            android:background="#ffffff">
+
+            <CheckBox
+                android:id="@+id/setalarmcheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알림/진동 설정"
+                android:textSize="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="18dp"/>
+
+            <TextView
+                android:id="@+id/setalarmtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView11"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="18dp"
+                android:text="진동을 사용합니다"
+                android:textColor="#c2bfbf" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setalarmsound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/setalarm"
+            android:background="#ffffff"
+            android:layout_marginTop="0.5dp">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알람 소리"
+                android:textSize="18dp"
+                android:layout_margin="18dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setpushalarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/setalarmsound"
+            android:background="#ffffff"
+            android:layout_marginTop="0.5dp">
+
+            <Switch
+                android:id="@+id/setpushalarmswitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="푸쉬 알림 설정"
+                android:textSize="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="18dp"/>
+
+            <TextView
+                android:id="@+id/setpushalarmtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView14"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="18dp"
+                android:text="푸쉬 알림을 설정합니다"
+                android:textColor="#c2bfbf" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/title2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/setpushalarm"
+            android:background="#ffffff"
+            android:layout_marginTop="0.5dp">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="아기 정보"
+                android:textColor="#2dbdae"
+                android:textSize="18dp"
+                android:layout_margin="12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/changebabyinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title2"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아기 정보 수정"
+                android:textSize="18dp"
+                android:layout_margin="18dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rest"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/changebabyinfo"
+            android:background="#ffffff"
+            android:layout_marginTop="0.5dp">
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:id="@+id/drawerlist_setting"
+        android:background="#ffededed"
+        android:layout_width="240.0dip"
+        android:layout_height="fill_parent" />
+</android.support.v4.widget.DrawerLayout>
+
+

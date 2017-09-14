@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:smartbabycare="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/action_bar_alarm"
+        android:icon="@drawable/ic_action_add_alarm"
+        android:title="@string/action_alarm"
+        smartbabycare:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_bar_bluetooth"
+        android:icon="@drawable/ic_action_bluetooth"
+        android:title="bluetooth"
+        smartbabycare:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_bar_setting"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/action_setting"
+        smartbabycare:showAsAction="ifRoom" />
+
+</menu>

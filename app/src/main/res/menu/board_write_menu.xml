@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:smartbabycare="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".babyboard.BabyBoardWrite">
+    <item android:id="@+id/board_add"
+        android:title="등록"
+        smartbabycare:showAsAction="withText" />
+
+</menu>

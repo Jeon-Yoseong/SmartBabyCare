@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알람 제목"
+            android:id="@+id/alarmTitle"
+            android:textSize="24dp"
+            android:textColor="#88878C"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알람 시간"
+                android:id="@+id/alarmtime"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:textColor="#88878C"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알람 반복여부"
+                android:id="@+id/alarmdaily"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:textColor="#88878C"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/onoffcheckbox"
+            android:layout_weight="2"
+            android:focusable="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>
