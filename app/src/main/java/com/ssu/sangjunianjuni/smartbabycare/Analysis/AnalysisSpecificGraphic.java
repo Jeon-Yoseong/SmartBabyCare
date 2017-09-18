@@ -51,7 +51,7 @@ public class AnalysisSpecificGraphic extends View {
         paint.setColor(Color.rgb(240, 215, 210));
         paint2.setColor(Color.rgb(255, 64, 129));
         paint3.setColor(Color.rgb(0,0,0));
-        paint3.setStrokeWidth(4);
+        paint3.setStrokeWidth(6);
         red.setColor(Color.rgb(255,223,223));
         yellow.setColor(Color.rgb(251,233,167));
         green.setColor(Color.rgb(197,255,188));
@@ -69,15 +69,15 @@ public class AnalysisSpecificGraphic extends View {
         //괜찮은 부분
         canvas.drawRoundRect(framewidth*(0.1F+(0.8F*(okmin-min)/(max-min))), frameheight/5*2, framewidth*(0.1F+(0.8F*(okmax-min)/(max-min))), frameheight/5*3, framewidth*0.01F, framewidth*0.01F, green);
         //선
-        canvas.drawLine(framewidth*(0.1F+(0.8F*(uservalue-min)/(max-min))), frameheight/5*1.75F, framewidth*(0.1F+(0.8F*(uservalue-min)/(max-min))), frameheight/5*2.25F, paint3);
+        canvas.drawLine(framewidth*(0.1F+(0.8F*(uservalue-min)/(max-min))), frameheight/5*1.75F, framewidth*(0.1F+(0.8F*(uservalue-min)/(max-min))), frameheight/5*3.25F, paint3);
         //하단부 밑줄
-        canvas.drawLine(framewidth*0.1F, frameheight/5*3.0F, framewidth*0.9F, frameheight/5*3.0F, paint3);
+        canvas.drawLine(framewidth*0.097F, frameheight/5*3.0F, framewidth*0.903F, frameheight/5*3.0F, paint3);
         //하단부 분위 텍스트(처음, 4분의1, 중간, 4분의3, 끝지점 표시)\
-        canvas.drawLine(framewidth*0.1F, frameheight/5*3.0F, framewidth*0.1F, frameheight/5*3.1F, paint3);
-        canvas.drawLine(framewidth*0.3F, frameheight/5*3.0F, framewidth*0.3F, frameheight/5*3.1F, paint3);
-        canvas.drawLine(framewidth*0.5F, frameheight/5*3.0F, framewidth*0.5F, frameheight/5*3.1F, paint3);
-        canvas.drawLine(framewidth*0.7F, frameheight/5*3.0F, framewidth*0.7F, frameheight/5*3.1F, paint3);
-        canvas.drawLine(framewidth*0.9F, frameheight/5*3.0F, framewidth*0.9F, frameheight/5*3.1F, paint3);
+        canvas.drawLine(framewidth*0.1F, frameheight/5*3.0F, framewidth*0.1F, frameheight/5*3.25F, paint3);
+        canvas.drawLine(framewidth*0.3F, frameheight/5*3.0F, framewidth*0.3F, frameheight/5*3.25F, paint3);
+        canvas.drawLine(framewidth*0.5F, frameheight/5*3.0F, framewidth*0.5F, frameheight/5*3.25F, paint3);
+        canvas.drawLine(framewidth*0.7F, frameheight/5*3.0F, framewidth*0.7F, frameheight/5*3.25F, paint3);
+        canvas.drawLine(framewidth*0.9F, frameheight/5*3.0F, framewidth*0.9F, frameheight/5*3.25F, paint3);
 
     }
 

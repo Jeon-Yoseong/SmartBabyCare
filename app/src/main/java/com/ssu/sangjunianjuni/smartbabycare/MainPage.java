@@ -144,19 +144,49 @@ public class MainPage extends BlunoLibrary {
             @Override
             public void onClick(View v) {
                 NetworkUtil.setNetworkPolicy();
-
+                Toast.makeText(getApplicationContext(), "button", Toast.LENGTH_SHORT).show();
+                connectDirectSmartBand();
+                //test용 코드
+                //IsDeviceConnected=true;
                 //블루투스
                 //아두이노 디바이스 측에서 연결이 끊길 경우 IsDeviceConnected 변수를 false로 갱신해주는 방법이 필요
-                if (!IsDeviceConnected) {
+                /*if (!IsDeviceConnected) {
                     //onResumeProcess()에서 블루투스가 켜진경우, 꺼진경우 각각 다르게 반응,
                     //블루투스가 켜져있는 경우 onResumeProcess()내에서 buttonScanOnClickProcess()실행
                     onResumeProcess();
                     //buttonScanOnClickProcess();
                 } else {
-                    Toast.makeText(getApplicationContext(), "send", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "send", Toast.LENGTH_SHORT).show();
                     serialSend("start");
-                }
+                }*/
 
+
+                //임시 데이터 삽입 코드
+                String tempdate="";
+                String temptime="";
+                dateformat=new SimpleDateFormat("YYYY/MM/dd");
+                timeformat = new SimpleDateFormat("HH:mm:ss");
+                tempdate=dateformat.format(new Date(System.currentTimeMillis()));
+                temptime = timeformat.format(new Date(System.currentTimeMillis()));
+                dbhelper.insert("2017/09/13", "01:01:01");
+                dbhelper.insert("2017/09/13", "02:02:02");
+                dbhelper.insert("2017/09/14", "03:03:03");
+                dbhelper.insert("2017/09/14", "04:01:01");
+                dbhelper.insert("2017/09/14", "05:02:02");
+                dbhelper.insert("2017/09/14", "06:03:03");
+                dbhelper.insert("2017/09/15", "01:01:01");
+                dbhelper.insert("2017/09/15", "02:02:02");
+                dbhelper.insert("2017/09/15", "03:03:03");
+                dbhelper.insert("2017/09/15", "04:01:01");
+                dbhelper.insert("2017/09/15", "05:02:02");
+                dbhelper.insert("2017/09/16", "03:03:03");
+                dbhelper.insert("2017/09/16", "04:03:03");
+                dbhelper.insert("2017/09/16", "05:03:03");
+                dbhelper.insert("2017/09/17", "06:03:03");
+                dbhelper.insert("2017/09/18", "07:03:03");
+                dbhelper.insert("2017/09/18", "08:03:03");
+                dbhelper.insert("2017/09/18", "09:03:03");
+                dbhelper.insert(tempdate, temptime);
             }
         });
         dbhelper = new BlueToothDBHelper(getApplicationContext(), "poopinfo.db", null, 1);
@@ -245,7 +275,7 @@ public class MainPage extends BlunoLibrary {
 
     //blunoLibrary 클래스 상속으로 인해 구현해야 하는 메소드
     //현재 연결 상태에 따라 각기 다른 설정
-    @Override
+    /*@Override
     public void onConectionStateChange(connectionStateEnum theConnectionState) {
         switch (theConnectionState) {                                 //Four connection state
             case isConnected:
@@ -271,29 +301,28 @@ public class MainPage extends BlunoLibrary {
             default:
                 break;
         }
-    }
+    }*/
 
     //블루투스 디바이스로부터 데이터 수신시
     @Override
-    public void onSerialReceived(String theString) {
-        //Toast.makeText(getApplicationContext(), "getdata: "+theString, Toast.LENGTH_SHORT).show();
+    public void onSerialReceived(String string) {
+        Character c=string.charAt(0);
+        Toast.makeText(getApplicationContext(), "getdata: "+(int)c, Toast.LENGTH_SHORT).show();
+        String theString=Integer.toString((int)c);
         // TODO Auto-generated method stub
         //receivetext.append(theString+"\n");                     //append the text into the EditText
         //The Serial data from the BLUNO may be sub-packaged, so using a buffer to hold the String is a good choice.
         //((ScrollView)receivetext.getParent()).fullScroll(View.FOCUS_DOWN);
         //스마트 밴드로부터 받아오는 코드
-        //블루이노랑 우노로 교체시 칩 아이디가 아닌 다른 방식으로 기기 구분 해볼 것
-
-
-        if (mDeviceAddress.equals("F7:7A:B0:63:4A:54")) {
-            Toast.makeText(getApplicationContext(), "heartbeat"+theString, Toast.LENGTH_SHORT).show();
+        if (mDeviceAddress.equals("C9:8C:C2:90:F8:9B")) {//스마트밴드
+            //Toast.makeText(getApplicationContext(), "heartbeat"+theString, Toast.LENGTH_SHORT).show();
             timeformat = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
             time = timeformat.format(new Date(System.currentTimeMillis()));
-            //smartdbhelper.insert(time, theString);
+            smartdbhelper.insert(time, theString);
             updateHeartbeatCounts();
-        }//기저귀 센서로부터 받아오는 코드
-        else {//저장을 날짜와 시간을 분리해서 저장하도록 코드 바꿀것!!
-            Toast.makeText(getApplicationContext(), "poop"+theString, Toast.LENGTH_SHORT).show();
+        }//기저귀센서로부터 받아오는 코드
+        else {
+            //Toast.makeText(getApplicationContext(), "poop"+theString, Toast.LENGTH_SHORT).show();
             Intent service = new Intent(getApplicationContext(), BluetoothAlarmService.class);
             startService(service);
             dateformat=new SimpleDateFormat("YYYY/MM/dd");
@@ -303,28 +332,69 @@ public class MainPage extends BlunoLibrary {
             dbhelper.insert(date, time);
             updateCounts();
         }
+        //Toast.makeText(getApplicationContext(), "before:"+thestring, Toast.LENGTH_SHORT).show();
 
-        BlockCipherMode cipher = new LEA.ECB();
+        /*BlockCipherMode cipher = new LEA.ECB();
 
-        byte[] key = {};
+        Log.e("TAG", "before:"+string+": "+(int)string.charAt(0));
+        //Toast.makeText(getApplicationContext(), "before:"+string+": "+(int)string.charAt(0), Toast.LENGTH_SHORT).show();
+        byte[] key = {0x7f, 0x7e, 0x7d, 0x7c, 0x7b, 0x7a, 0x79, 0x78, 0x77, 0x76, 0x75, 0x74, 0x73, 0x72, 0x71, 0x70};
 
         byte[] test;
-        test = theString.getBytes();
-
+        //test=theint;
+        //test = inttobyte(theint);
+        test=string.getBytes();
+        int a=(int)string.charAt(0);
+        test=inttobyte(a);
+        Log.e("TAG", "before decrypt:"+test);
+        //Toast.makeText(getApplicationContext(), "before decrypt:"+test, Toast.LENGTH_SHORT).show();
         System.out.println(test.length);
 
-        cipher.init(BlockCipher.Mode.ENCRYPT, key);
+        /*cipher.init(BlockCipher.Mode.ENCRYPT, key);
 
         byte[] enc = cipher.update(test);
         String text = new String(enc);
-
+        Toast.makeText(getApplicationContext(), "encrypt:"+text, Toast.LENGTH_SHORT).show();
         cipher.init(BlockCipher.Mode.DECRYPT, key);
 
         byte[] dec = cipher.update(test);
 
-        text = new String(dec);
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+        String text = new String(dec);
+        Log.e("TAG", "decrypt:"+dec);
+        //Toast.makeText(getApplicationContext(), "decrypt:"+dec, Toast.LENGTH_SHORT).show();
+        //Character c=text.charAt(0);
+        //Toast.makeText(getApplicationContext(), "getdata: "+(int)c, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "after:"+text, Toast.LENGTH_SHORT).show();
+        */
 
+        BlockCipherMode cipher = new LEA.ECB();
+        Log.e("TAG", "before:"+string+": "+(int)string.charAt(0));
+        byte[] key = {0x7f, 0x7e, 0x7d, 0x7c, 0x7b, 0x7a, 0x79, 0x78, 0x77, 0x76, 0x75, 0x74, 0x73, 0x72, 0x71, 0x70};
+        cipher.init(BlockCipher.Mode.DECRYPT, key);
+        byte[] test;
+        int a=(int)string.charAt(0);
+        test=inttobyte(a);
+        Log.e("TAG", "before decrypt:"+test);
+        System.out.println(test.length);
+        byte[] dec = cipher.update(test);
+        //int b=bytetoint(dec);
+        Log.e("TAG", "decrypt:"+dec);
+    }
+
+    public  byte[] inttobyte(int a)
+    {
+        byte b[]=new byte[4];
+
+        b[0]=(byte)(a & 0x000000ff);
+        b[1]=(byte)((a & 0x0000ff00)>>8);
+        b[2]=(byte)((a & 0x00ff0000)>>16);
+        b[3]=(byte)((a & 0xff000000)>>24);
+        return b;
+    }
+    public  int bytetoint(byte b[])
+    {
+        return b[0]&0xff;
+        //return ((b[3]&0xff)<<24) |((b[2]&0xff)<<16) | ((b[1]&0xff)<<8) | ((b[0]&0xff)) ;
     }
 
     //블루투스 관련

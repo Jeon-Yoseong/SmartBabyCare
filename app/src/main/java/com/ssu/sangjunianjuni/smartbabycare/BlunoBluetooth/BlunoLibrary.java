@@ -1,6 +1,5 @@
 package com.ssu.sangjunianjuni.smartbabycare.BlunoBluetooth;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,8 +56,8 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
 //		mainContext=theContext;
 //	}
 
-    public abstract void onConectionStateChange(connectionStateEnum theconnectionStateEnum);
-    public abstract void onSerialReceived(String theString);
+    //public abstract void onConectionStateChange(connectionStateEnum theconnectionStateEnum);
+    public abstract void onSerialReceived(String thestring);
     public void serialSend(String theString){
         //mSCharacteristic.setValue(theString);
         rfduinoService.send(theString.getBytes());
@@ -88,12 +87,13 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
     //BluetoothLeService mBluetoothLeService;
     private ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics =
             new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
-    private LeDeviceListAdapter mLeDeviceListAdapter=null;
+
+    protected LeDeviceListAdapter mLeDeviceListAdapter=null;
     private BluetoothAdapter mBluetoothAdapter;
     private boolean mScanning =false;
-    AlertDialog mScanDeviceDialog;
-    public enum connectionStateEnum{isNull, isScanning, isToScan, isConnecting , isConnected, isDisconnecting};
-    public connectionStateEnum mConnectionState = connectionStateEnum.isNull;
+    protected AlertDialog mScanDeviceDialog;
+    //public enum connectionStateEnum{isNull, isScanning, isToScan, isConnecting , isConnected, isDisconnecting};
+    //public connectionStateEnum mConnectionState = connectionStateEnum.isNull;
     private static final int REQUEST_ENABLE_BT_INIT = 1, REQUEST_ENABLE_BT_ONMAIN=2;;
 
     /*private Runnable mConnectingOverTimeRunnable=new Runnable(){
@@ -124,8 +124,7 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
     {
         if(!initiate())
         {
-            Toast.makeText(mainContext, R.string.error_bluetooth_not_supported,
-                    Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mainContext, R.string.error_bluetooth_not_supported,Toast.LENGTH_SHORT).show();
             ((Activity) mainContext).finish();
         }
 
@@ -153,9 +152,9 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
 
                         if(device.getName()==null || device.getAddress()==null)
                         {
-                            Toast.makeText(getApplicationContext(), "wrong device", Toast.LENGTH_SHORT).show();
-                            mConnectionState=connectionStateEnum.isToScan;
-                            onConectionStateChange(mConnectionState);
+                            //Toast.makeText(getApplicationContext(), "wrong device", Toast.LENGTH_SHORT).show();
+                            //mConnectionState=connectionStateEnum.isToScan;
+                            //onConectionStateChange(mConnectionState);
                         }
                         else{
 
@@ -169,7 +168,7 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
                             registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
                             if (rfduinoService != null) {
                                 final boolean result = rfduinoService.connect(mDeviceAddress);
-                                Toast.makeText(getApplicationContext(), "connect request result:"+result, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), "connect request result:"+result, Toast.LENGTH_SHORT).show();
                                 //Log.d(TAG, "Connect request result=" + result);
                             }
                         }
@@ -181,8 +180,8 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
                     public void onCancel(DialogInterface arg0) {
                         System.out.println("mBluetoothAdapter.stopLeScan");
 
-                        mConnectionState = connectionStateEnum.isToScan;
-                        onConectionStateChange(mConnectionState);
+                        //mConnectionState = connectionStateEnum.isToScan;
+                        //onConectionStateChange(mConnectionState);
                         mScanDeviceDialog.dismiss();
 
                         scanLeDevice(false);
@@ -191,6 +190,35 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
 
     }
 
+    //스마트 밴드 바로 연결을 위한 클래스
+    public void connectDirectSmartBand(){
+        Toast.makeText(getApplicationContext(), "direct connect", Toast.LENGTH_SHORT).show();
+
+        if (!mBluetoothAdapter.isEnabled()) {
+            if (!mBluetoothAdapter.isEnabled()) {
+                Intent enableBtIntent = new Intent(
+                        BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                ((Activity) mainContext).startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT_ONMAIN);
+                //블루투스가 안켜져있는 경우 여기서 다이얼로그로 넘어감, 다이얼로그가 안뜨고 블루투스 on 후 바로 HR Band에 연결되도록 수정 필요
+            }
+        }
+        else{
+            scanLeDevice(true);
+            String DeviceName, DeviceAddress;
+            DeviceName="HR Band";
+            DeviceAddress="C9:8C:C2:90:F8:9B";
+            mDeviceAddress=DeviceAddress;
+            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+            if (rfduinoService != null) {
+                final boolean result = rfduinoService.connect(DeviceAddress);
+                //Toast.makeText(getApplicationContext(), "connect request result:"+result, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Direct Connect request result=" + result);
+            }
+        }
+
+        mainContext.registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+
+    }
     //블루투스가 꺼져있으면 블루투스 켤지 다이얼로그 출력
     public void onResumeforOnCreate(){
         //Toast.makeText(getApplicationContext(), "onresumeforoncreate", Toast.LENGTH_SHORT).show();
@@ -270,13 +298,13 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
         // User chose not to enable Bluetooth.
         if (requestCode == REQUEST_ENABLE_BT_INIT
                 && resultCode == Activity.RESULT_CANCELED) {
-            Toast.makeText(getApplicationContext(), "enable bt init", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "enable bt init", Toast.LENGTH_SHORT).show();
             //((Activity) mainContext).finish();
             return;
         }
         else if(requestCode==REQUEST_ENABLE_BT_ONMAIN){
             if(resultCode==Activity.RESULT_OK){
-                Toast.makeText(getApplicationContext(), "enable bt onmain", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "enable bt onmain", Toast.LENGTH_SHORT).show();
                 scanLeDevice(true);
                 mScanDeviceDialog.show();
             }
@@ -337,31 +365,21 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            Toast.makeText(getApplicationContext(), "action: "+action, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "action: "+action, Toast.LENGTH_SHORT).show();
             if (RFduinoService.ACTION_CONNECTED.equals(action)) {
                 mConnected = true;
                 updateConnectionState();
-                mConnectionState=connectionStateEnum.isConnected;
-                onConectionStateChange(mConnectionState);
             } else if (RFduinoService.ACTION_DISCONNECTED.equals(action)) {
                 mConnected = false;
-                mConnectionState=connectionStateEnum.isDisconnecting;
-                onConectionStateChange(mConnectionState);
                 updateConnectionState();
             } else if (RFduinoService.ACTION_DATA_AVAILABLE.equals(action)) {
-                /*String data="";
-                data=intent.getStringExtra(RFduinoService.EXTRA_DATA);
-                if(!data.equals("")){
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            sp.play(mid, 1f,1f, 0, 0, 1f);
-                        }
-                    });
-                }
-                Toast.makeText(getApplicationContext(), "data: "+data, Toast.LENGTH_SHORT).show();
-                onSerialReceived(data);*/
-                byte[] data=intent.getByteArrayExtra(RFduinoService.EXTRA_DATA);
+                onSerialReceived(intent.getStringExtra(RFduinoService.EXTRA_DATA));
+                /*String result=intent.getStringExtra(RFduinoService.EXTRA_DATA);
+                Toast.makeText(getApplicationContext(), "display:"+result, Toast.LENGTH_SHORT).show();
+                onSerialReceived(result);
+                System.out.println("displayData "+intent.getStringExtra(RFduinoService.EXTRA_DATA));*/
+
+                /*byte[] data=intent.getByteArrayExtra(RFduinoService.EXTRA_DATA);
                 if(data!=null && data.length>=1 && data[0]==1) {
                     mHandler.post(new Runnable() {
                         @Override
@@ -370,6 +388,8 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
                         }
                     });
                 }
+                //Toast.makeText(getApplicationContext(), "data: "+data.toString(), Toast.LENGTH_SHORT).show();
+                onSerialReceived(new String(data));*/
                 /*int data=intent.getIntExtra(RFduinoService.EXTRA_DATA, 0);
                 if(data!=0){
                     mHandler.post(new Runnable() {
@@ -379,16 +399,7 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
                         }
                     });
                 }
-                onSerialReceived(Integer.toString(data));*/
-                //Toast.makeText(getApplicationContext(), "data: "+data.toString(), Toast.LENGTH_SHORT).show();
-                /*try {
-                    String str=new String(data, "UTF-8");
-                    onSerialReceived(str);
-                } catch (UnsupportedEncodingException e) {
-                    Toast.makeText(getApplicationContext(), "not encoded", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }*/
-
+                onSerialReceived(data);*/
             }
         }
     };

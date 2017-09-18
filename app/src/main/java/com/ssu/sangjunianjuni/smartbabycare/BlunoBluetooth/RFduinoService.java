@@ -18,7 +18,10 @@ import android.content.IntentFilter;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.util.Xml;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 /*
@@ -49,13 +52,6 @@ public class RFduinoService extends Service {
     public final static UUID UUID_DISCONNECT = BluetoothHelper.sixteenBitUuid(0x2223);
     public final static UUID UUID_CLIENT_CONFIGURATION = BluetoothHelper.sixteenBitUuid(0x2902);
 
-    private final static UUID GENERIC_ATTRIBUTE_SERVICE = UUID.fromString("00001801-0000-1000-8000-00805f9b34fb");
-    private final static UUID SERVICE_CHANGED_CHARACTERISTIC = UUID.fromString("00002A05-0000-1000-8000-00805f9b34fb");
-    private final static UUID CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
-    public final static UUID BLE_UUID_SERVICE = UUID.fromString( "713D0000-503E-4C75-BA94-3148F18D941E");
-    public final static UUID BLE_UUID_RECEIVE = UUID.fromString("713D0002-503E-4C75-BA94-3148F18D941E");
-    public final static UUID BLE_UUID_SEND = UUID.fromString("713D0003-503E-4C75-BA94-3148F18D941E");
-
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
@@ -73,17 +69,13 @@ public class RFduinoService extends Service {
 
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-            //Toast.makeText(getApplicationContext(), "onservicesdiscovered", Toast.LENGTH_SHORT).show();
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 mBluetoothGattService = gatt.getService(UUID_SERVICE);
                 if (mBluetoothGattService == null) {
-                    mBluetoothGattService=gatt.getService(GENERIC_ATTRIBUTE_SERVICE);
-                    if(mBluetoothGattService==null){
-                        Log.e(TAG, "RFduino GATT service not found!");
-                        return;
-                    }
+                    Log.e(TAG, "RFduino GATT service not found!");
+                    return;
                 }
-                Log.e(TAG, "test 1!");
+
                 BluetoothGattCharacteristic receiveCharacteristic =
                         mBluetoothGattService.getCharacteristic(UUID_RECEIVE);
                 if (receiveCharacteristic != null) {
@@ -100,25 +92,7 @@ public class RFduinoService extends Service {
                     }
 
                 } else {
-                    Log.e(TAG, "test 2!");
-                    receiveCharacteristic=mBluetoothGattService.getCharacteristic(SERVICE_CHANGED_CHARACTERISTIC);
-                    if(receiveCharacteristic!=null){
-                        Log.e(TAG, "test 3!");
-                        BluetoothGattDescriptor receiveConfigDescriptor =
-                                receiveCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID);
-                        if (receiveConfigDescriptor != null) {
-                            gatt.setCharacteristicNotification(receiveCharacteristic, true);
-
-                            receiveConfigDescriptor.setValue(
-                                    BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
-                            gatt.writeDescriptor(receiveConfigDescriptor);
-                        } else {
-                            Log.e(TAG, "RFduino receive config descriptor not found!");
-                        }
-                    }
-                    else{
-                        Log.e(TAG, "RFduino receive characteristic not found!");
-                    }
+                    Log.e(TAG, "RFduino receive characteristic not found!");
                 }
 
                 broadcastUpdate(ACTION_CONNECTED);
@@ -144,7 +118,6 @@ public class RFduinoService extends Service {
     };
 
     private void broadcastUpdate(final String action) {
-        Toast.makeText(getApplicationContext(), "broadcastupdate", Toast.LENGTH_SHORT).show();
         final Intent intent = new Intent(action);
         sendBroadcast(intent, Manifest.permission.BLUETOOTH);
     }
@@ -152,10 +125,18 @@ public class RFduinoService extends Service {
     private void broadcastUpdate(final String action,
                                  final BluetoothGattCharacteristic characteristic) {
         if (UUID_RECEIVE.equals(characteristic.getUuid())) {
-            Toast.makeText(getApplicationContext(), "broadcastupdate2", Toast.LENGTH_SHORT).show();
             final Intent intent = new Intent(action);
-            intent.putExtra(EXTRA_DATA, characteristic.getValue());
+            final byte[] data = characteristic.getValue();
+            try {
+                Log.e(TAG, "bytetostring:"+data+" "+new String(data, "UTF-8"));
+                intent.putExtra(EXTRA_DATA, new String(data, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             sendBroadcast(intent, Manifest.permission.BLUETOOTH);
+
+            /*intent.putExtra(EXTRA_DATA, characteristic.getValue());
+            sendBroadcast(intent, Manifest.permission.BLUETOOTH);*/
         }
     }
 
@@ -217,9 +198,8 @@ public class RFduinoService extends Service {
      *         callback.
      */
     public boolean connect(final String address) {
-        Toast.makeText(getApplicationContext(), "connect", Toast.LENGTH_SHORT).show();
         if (mBluetoothAdapter == null || address == null) {
-            Toast.makeText(getApplicationContext(), "BluetoothAdapter not initialized or unspecified address.",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "BluetoothAdapter not initialized or unspecified address.",Toast.LENGTH_SHORT).show();
             Log.w(TAG, "BluetoothAdapter not initialized or unspecified address.");
             return false;
         }
@@ -227,7 +207,7 @@ public class RFduinoService extends Service {
         // Previously connected device.  Try to reconnect.
         if (mBluetoothDeviceAddress != null && address.equals(mBluetoothDeviceAddress)
                 && mBluetoothGatt != null) {
-            Toast.makeText(getApplicationContext(), "Trying to use an existing mBluetoothGatt for connection.",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Trying to use an existing mBluetoothGatt for connection.",Toast.LENGTH_SHORT).show();
             Log.d(TAG, "Trying to use an existing mBluetoothGatt for connection.");
             return mBluetoothGatt.connect();
         }
@@ -236,7 +216,7 @@ public class RFduinoService extends Service {
         // We want to directly connect to the device, so we are setting the autoConnect
         // parameter to false.
         mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
-        Toast.makeText(getApplicationContext(), "Trying to create a new connection.",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Trying to create a new connection.",Toast.LENGTH_SHORT).show();
         Log.d(TAG, "Trying to create a new connection.");
         mBluetoothDeviceAddress = address;
         return true;
