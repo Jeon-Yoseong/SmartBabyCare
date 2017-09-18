@@ -637,6 +637,4 @@ public abstract  class BlunoLibrary  extends AppCompatActivity{
             return view;
         }
     }
-
-
 }

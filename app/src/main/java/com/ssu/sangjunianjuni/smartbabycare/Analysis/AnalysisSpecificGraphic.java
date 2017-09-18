@@ -8,7 +8,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Toast;
 
 /**
  * Created by kang on 2017-06-22.
@@ -82,3 +81,4 @@ public class AnalysisSpecificGraphic extends View {
     }
 
 }
+

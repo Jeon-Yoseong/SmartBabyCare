@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -282,3 +281,4 @@ public class PoopAnalysis extends AppCompatActivity {
         return false;
     }
 }
+

@@ -183,6 +183,7 @@ public class MainPage extends BlunoLibrary {
                 dbhelper.insert("2017/09/16", "04:03:03");
                 dbhelper.insert("2017/09/16", "05:03:03");
                 dbhelper.insert("2017/09/17", "06:03:03");
+                dbhelper.insert("2017/09/17", "07:03:03");
                 dbhelper.insert("2017/09/18", "07:03:03");
                 dbhelper.insert("2017/09/18", "08:03:03");
                 dbhelper.insert("2017/09/18", "09:03:03");

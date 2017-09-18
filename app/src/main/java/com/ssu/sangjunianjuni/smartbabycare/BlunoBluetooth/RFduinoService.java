@@ -286,3 +286,4 @@ public class RFduinoService extends Service {
         return filter;
     }
 }
+
