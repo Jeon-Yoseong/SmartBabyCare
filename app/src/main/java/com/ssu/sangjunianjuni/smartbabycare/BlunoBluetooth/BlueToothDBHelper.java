@@ -135,4 +135,3 @@ public class BlueToothDBHelper extends SQLiteOpenHelper {
 
     }
 }
-

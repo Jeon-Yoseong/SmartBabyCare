@@ -8,7 +8,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +32,7 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 /**
- * Created by kang on 2017-05-02.
+ * Created by yoseong on 2017-05-02.
  */
 
 public class PoopAnalysis extends AppCompatActivity {
@@ -42,8 +41,8 @@ public class PoopAnalysis extends AppCompatActivity {
     public AnalysisSpecificGraphic graphic;
     TextView recentpoop, useraveragepoop, poopanalysisresult;
     private String fromdb="";
-    private ListView pooplistview;
-    private PoopAdapter adapter;
+
+
     private BlueToothDBHelper dbhelper;
     ArrayList<ListItem> listitem = new ArrayList<ListItem>();
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -61,7 +60,7 @@ public class PoopAnalysis extends AppCompatActivity {
         String timehour=timeformat2.format(new Date(System.currentTimeMillis()));
 
         int poopcounttoday=dbhelper.getcount(time);
-        graphic.getdata(0.0F, 6.0F, 0.5F, 4.0F, (float)poopcounttoday);
+        graphic.getdata(0.0F, 6.0F, 0.5F, 4.0F, (float)poopcounttoday, "일일 배변량");
         //addgraph(box, graphic);
 
         recentpoop=(TextView)findViewById(R.id.recentpoop);
@@ -190,7 +189,7 @@ public class PoopAnalysis extends AppCompatActivity {
             j++;
         }
         // 나머지 0으로 초기화화
-       for(int i = j + 1; i < 7; i++) {
+        for(int i = j + 1; i < 7; i++) {
             entries.add(new BarEntry(0, j));
         }
 
@@ -281,4 +280,3 @@ public class PoopAnalysis extends AppCompatActivity {
         return false;
     }
 }
-

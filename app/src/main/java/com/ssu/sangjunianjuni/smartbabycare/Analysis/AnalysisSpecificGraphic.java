@@ -7,7 +7,9 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by kang on 2017-06-22.
@@ -23,19 +25,23 @@ public class AnalysisSpecificGraphic extends View {
     private float okmax;
     private float okmin;
     private float uservalue;
+
+    private String graphtitle;
+
     public AnalysisSpecificGraphic(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     //width:프레임 너비, height: 프레임 높이, max:데이터중 최대값, min:최소값, okmax:허용 최대값, okmin:허용 최소값, uservalue:사용자 측정값
-    public void getdata(float min, float max, float okmin, float okmax, float uservalue) {
+    public void getdata(float min, float max, float okmin, float okmax, float uservalue, String title) {
 
         this.min=min;
         this.max=max;
         this.okmin=okmin;
         this.okmax=okmax;
         this.uservalue=uservalue;
-
+        graphtitle=title;
+        Log.e("TAG", "string:"+graphtitle);
         invalidate();
     }
 
@@ -59,26 +65,42 @@ public class AnalysisSpecificGraphic extends View {
 
         //left,top,right,bottom
 
-        //베이스
+        //좌상단 타이틀
+        paint3.setTextSize(25);
+        canvas.drawText(graphtitle, framewidth*0.05F, frameheight*0.15F, paint3);
 
+        //베이스(빨간부분)
         canvas.drawRoundRect(framewidth*0.1F, frameheight/5*2, framewidth*0.9F, frameheight/5*3, framewidth*0.01F, framewidth*0.01F, red);
+
         //노란부분
         canvas.drawRoundRect(framewidth*(0.1F+(0.8F*(okmin-min)/(max-min)/2)), frameheight/5*2, framewidth*(0.1F+(0.8F*(okmin-min)/(max-min))), frameheight/5*3, framewidth*0.01F, framewidth*0.01F, yellow);
         canvas.drawRoundRect(framewidth*(0.1F+(0.8F*(okmax-min)/(max-min))), frameheight/5*2, (framewidth*(0.1F+(0.8F*(okmax-min)/(max-min)))+framewidth*0.9F)/2, frameheight/5*3, framewidth*0.01F, framewidth*0.01F, yellow);
+
         //괜찮은 부분
         canvas.drawRoundRect(framewidth*(0.1F+(0.8F*(okmin-min)/(max-min))), frameheight/5*2, framewidth*(0.1F+(0.8F*(okmax-min)/(max-min))), frameheight/5*3, framewidth*0.01F, framewidth*0.01F, green);
+
         //선
         canvas.drawLine(framewidth*(0.1F+(0.8F*(uservalue-min)/(max-min))), frameheight/5*1.75F, framewidth*(0.1F+(0.8F*(uservalue-min)/(max-min))), frameheight/5*3.25F, paint3);
+
         //하단부 밑줄
         canvas.drawLine(framewidth*0.097F, frameheight/5*3.0F, framewidth*0.903F, frameheight/5*3.0F, paint3);
-        //하단부 분위 텍스트(처음, 4분의1, 중간, 4분의3, 끝지점 표시)\
+
+        //하단부 분위 선, 텍스트(처음, 4분의1, 중간, 4분의3, 끝지점 표시)\
         canvas.drawLine(framewidth*0.1F, frameheight/5*3.0F, framewidth*0.1F, frameheight/5*3.25F, paint3);
+        canvas.drawText(Float.toString(min), framewidth*0.1F, frameheight/5*3.5F, paint3);
+
         canvas.drawLine(framewidth*0.3F, frameheight/5*3.0F, framewidth*0.3F, frameheight/5*3.25F, paint3);
+        canvas.drawText(Float.toString(okmin), framewidth*0.3F, frameheight/5*3.5F, paint3);
+
         canvas.drawLine(framewidth*0.5F, frameheight/5*3.0F, framewidth*0.5F, frameheight/5*3.25F, paint3);
+        canvas.drawText(Float.toString((okmin+okmax)/2), framewidth*0.5F, frameheight/5*3.5F, paint3);
+
         canvas.drawLine(framewidth*0.7F, frameheight/5*3.0F, framewidth*0.7F, frameheight/5*3.25F, paint3);
+        canvas.drawText(Float.toString(okmax), framewidth*0.7F, frameheight/5*3.5F, paint3);
+
         canvas.drawLine(framewidth*0.9F, frameheight/5*3.0F, framewidth*0.9F, frameheight/5*3.25F, paint3);
+        canvas.drawText(Float.toString(max), framewidth*0.9F, frameheight/5*3.5F, paint3);
 
     }
 
 }
-

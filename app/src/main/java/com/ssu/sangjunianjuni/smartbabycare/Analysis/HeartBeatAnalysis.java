@@ -46,7 +46,7 @@ public class HeartBeatAnalysis extends AppCompatActivity {
         String heart=dbhelper.getheartbeat();
 
         int heartbeatrecently=Integer.parseInt(heart);
-        graphic.getdata(70.0F, 150.0F, 100.0F, 140.0F, heartbeatrecently);
+        graphic.getdata(50.0F, 140.0F, 70.0F, 120.0F, heartbeatrecently, "심박수 평균");
 
         recentheartbeat=(TextView)findViewById(R.id.recentheartbeat);
         recentheartbeat.setText("최근 측정 심박수 : "+Integer.toString(heartbeatrecently));
@@ -83,15 +83,6 @@ public class HeartBeatAnalysis extends AppCompatActivity {
             int i=listitem.size()-1;
             adapter.addItem(listitem.get(i).getData(0), listitem.get(i).getData(1));
         }
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
-        adapter.addItem("2017/09/01 16:59:02", "85");
 
     }
     public boolean onKeyDown(int keyCode, KeyEvent event)

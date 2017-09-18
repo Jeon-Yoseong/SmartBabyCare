@@ -89,11 +89,11 @@
             android:text="로그인"
             android:textColor="@color/color_white"
             android:layout_marginTop="20dp" />
-            <!--
-            android:background="@drawable/login_0064a2"
-            android:minWidth="0dp"
-            android:maxWidth="0dp"
-            -->
+        <!--
+        android:background="@drawable/login_0064a2"
+        android:minWidth="0dp"
+        android:maxWidth="0dp"
+        -->
 
 
         <!-- Link to Login Screen -->
@@ -105,27 +105,27 @@
                     android:text="@string/btn_login"
                     android:src="@drawable/login_0064a2"/>
         -->
-                <CheckBox
-                    android:text="자동로그인"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:textColor="#88878C"
-                    android:buttonTint="#88878C"
-                    android:id="@+id/autoLogin" />
+        <CheckBox
+            android:id="@+id/autoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:buttonTint="#88878C"
+            android:text="ID/PW 저장"
+            android:textColor="#88878C"
+            android:textSize="15sp" />
 
-                <Button
-                    android:id="@+id/btnRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:background="@null"
-                    android:text="@string/btn_register"
-                    android:textAllCaps="false"
-                    android:textColor="#88878C"
-                    android:textSize="15sp" />
-            </LinearLayout>
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:text="@string/btn_register"
+            android:textAllCaps="false"
+            android:textColor="#88878C"
+            android:textSize="15sp" />
+    </LinearLayout>
 
-        </LinearLayout>
+</LinearLayout>

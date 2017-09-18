@@ -50,7 +50,7 @@ public class AnalysisPage extends AppCompatActivity {
         HEIGHT = getUSER_ID.getStringExtra("HEIGHT");
         WEIGHT = getUSER_ID.getStringExtra("WEIGHT");
 
-        Toast.makeText(getApplicationContext(), ""+USER_ID, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), ""+NAME, Toast.LENGTH_SHORT).show();
 
         //툴바를 액션바 대신 사용
         Toolbar toolbar1=(Toolbar)findViewById(R.id.toolbar_analysis);

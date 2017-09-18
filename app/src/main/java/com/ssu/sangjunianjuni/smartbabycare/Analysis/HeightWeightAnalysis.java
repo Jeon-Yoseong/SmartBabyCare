@@ -1,22 +1,13 @@
 package com.ssu.sangjunianjuni.smartbabycare.Analysis;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.YAxisValueFormatter;
-import com.ssu.sangjunianjuni.smartbabycare.AnalysisPage;
 import com.ssu.sangjunianjuni.smartbabycare.ListItem;
 import com.ssu.sangjunianjuni.smartbabycare.R;
 
@@ -28,13 +19,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+
 
 /**
- * Created by kang on 2017-05-02.
+ * Created by yoseong on 2017-05-02.
  */
 
 public class HeightWeightAnalysis extends AppCompatActivity {
@@ -46,6 +35,8 @@ public class HeightWeightAnalysis extends AppCompatActivity {
     private String SEX;
     private String HEIGHT;
     private String WEIGHT;
+    private String AVERAGEHEIGHT;
+    private String AVERAGEWEIGHT;//두 AVERAGE 변수는 그래픽에 개월별 아이 평균 정보를 주기 위해 만듬,
 
     private ArrayList<ListItem> listItem = new ArrayList<ListItem>();
 
@@ -55,6 +46,9 @@ public class HeightWeightAnalysis extends AppCompatActivity {
     private TextView averageHeight;
     private TextView averageWeight;
     private TextView analysisresultHW;
+
+    private AnalysisSpecificGraphic graph_height;
+    private AnalysisSpecificGraphic graph_weight;
 
     // 데이터 불러오기
     PHPMyBabyInfo task;
@@ -73,6 +67,12 @@ public class HeightWeightAnalysis extends AppCompatActivity {
         averageHeight = (TextView) findViewById(R.id.average_height);
         averageWeight = (TextView) findViewById(R.id.average_weight);
         analysisresultHW = (TextView) findViewById(R.id.analysisresult_hw);
+        graph_height=(AnalysisSpecificGraphic)findViewById(R.id.heightgraphGui);
+        graph_weight=(AnalysisSpecificGraphic)findViewById(R.id.weightgraphGui);
+
+        //여기서는 통신 이후 타이틀이 그래픽쪽에 전달됨, 그래서 타이틀이 제대로 반영이 안됨, 반영을 위해 타이틀만 미리 보내놓음
+        graph_height.getdata(0,0,0,0,0,"우리아이 키");
+        graph_weight.getdata(0,0,0,0,0,"우리아이 몸무게");
 
         // 데이터 불러오기
         task = new PHPMyBabyInfo();
@@ -235,32 +235,33 @@ public class HeightWeightAnalysis extends AppCompatActivity {
             System.out.println("month: "+MONTH);
 
             for(int i = 0; i < listItem.size(); i++) {
-               if(listItem.get(i).getData(0).equals(MONTH)) {
-                   if(SEX.equals("남자")) {
-                       tempHeight = listItem.get(i).getData(1);
-                       tempWeight = listItem.get(i).getData(2);
-                       averageHeight.setText(MONTH+"개월 아이 평균 키 : "+listItem.get(i).getData(1)+"Cm");
-                       averageWeight.setText(MONTH+"개월 아이 평균 몸무게 : "+listItem.get(i).getData(2)+"Kg");
-                   }
-                   if(SEX.equals("여자")) {
-                       tempHeight = listItem.get(i).getData(3);
-                       tempWeight = listItem.get(i).getData(4);
-                       averageHeight.setText(MONTH+"개월 아이 평균 키 : "+listItem.get(i).getData(3)+"Cm");
-                       averageWeight.setText(MONTH+"개월 아이 평균 몸무게 : "+listItem.get(i).getData(4)+"Kg");
-                   }
-                   if (Double.parseDouble(HEIGHT) >= Double.parseDouble(tempHeight) && Double.parseDouble(WEIGHT) >= Double.parseDouble(tempWeight)) {
-                       analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키가 크고 몸무게도 많이 나갑니다.");
-                   } else if (Double.parseDouble(HEIGHT) >= Double.parseDouble(tempHeight) && Double.parseDouble(WEIGHT) < Double.parseDouble(tempWeight)) {
-                       analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키는 크고 몸무게는 적게 나갑니다.");
-                   } else if (Double.parseDouble(HEIGHT) < Double.parseDouble(tempHeight) && Double.parseDouble(WEIGHT) >= Double.parseDouble(tempWeight)) {
-                       analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키는 작고 몸무게는 많이 나갑니다.");
-                   } else {
-                       analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키가 작고 몸무게도 적게 나갑니다.");
-                   }
-               }
+                if(listItem.get(i).getData(0).equals(MONTH)) {
+                    if(SEX.equals("남자")) {
+                        tempHeight = listItem.get(i).getData(1);
+                        tempWeight = listItem.get(i).getData(2);
+                        averageHeight.setText(MONTH+"개월 아이 평균 키 : "+listItem.get(i).getData(1)+"Cm");
+                        averageWeight.setText(MONTH+"개월 아이 평균 몸무게 : "+listItem.get(i).getData(2)+"Kg");
+                    }
+                    if(SEX.equals("여자")) {
+                        tempHeight = listItem.get(i).getData(3);
+                        tempWeight = listItem.get(i).getData(4);
+                        averageHeight.setText(MONTH+"개월 아이 평균 키 : "+listItem.get(i).getData(3)+"Cm");
+                        averageWeight.setText(MONTH+"개월 아이 평균 몸무게 : "+listItem.get(i).getData(4)+"Kg");
+                    }
+                    if (Double.parseDouble(HEIGHT) >= Double.parseDouble(tempHeight) && Double.parseDouble(WEIGHT) >= Double.parseDouble(tempWeight)) {
+                        analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키가 크고 몸무게도 많이 나갑니다.");
+                    } else if (Double.parseDouble(HEIGHT) >= Double.parseDouble(tempHeight) && Double.parseDouble(WEIGHT) < Double.parseDouble(tempWeight)) {
+                        analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키는 크고 몸무게는 적게 나갑니다.");
+                    } else if (Double.parseDouble(HEIGHT) < Double.parseDouble(tempHeight) && Double.parseDouble(WEIGHT) >= Double.parseDouble(tempWeight)) {
+                        analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키는 작고 몸무게는 많이 나갑니다.");
+                    } else {
+                        analysisresultHW.setText("분석 결과"+"\n"+"또래 아이보다 키가 작고 몸무게도 적게 나갑니다.");
+                    }
+                }
             }
-
-
+            //Log.e("TAG", "execute:"+tempHeight+" "+tempWeight);
+            graph_height.getdata(Float.valueOf(tempHeight)*0.5F, Float.valueOf(tempHeight)*1.5F, Float.valueOf(tempHeight)*0.75F, Float.valueOf(tempHeight)*1.25F, Float.valueOf(HEIGHT), "우리아이 키");
+            graph_weight.getdata(Float.valueOf(tempWeight)*0.5F, Float.valueOf(tempWeight)*1.5F, Float.valueOf(tempWeight)*0.75F, Float.valueOf(tempWeight)*1.25F, Float.valueOf(WEIGHT), "우리아이 몸무게");
 
         }
 

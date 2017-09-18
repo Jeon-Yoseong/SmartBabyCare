@@ -170,7 +170,7 @@ public class MainPage extends BlunoLibrary {
 
 
                 //임시 데이터 삽입 코드
-                String tempdate="";
+                /*String tempdate="";
                 String temptime="";
                 dateformat=new SimpleDateFormat("YYYY/MM/dd");
                 timeformat = new SimpleDateFormat("HH:mm:ss");
@@ -195,7 +195,7 @@ public class MainPage extends BlunoLibrary {
                 dbhelper.insert("2017/09/18", "07:03:03");
                 dbhelper.insert("2017/09/18", "08:03:03");
                 dbhelper.insert("2017/09/18", "09:03:03");
-                dbhelper.insert(tempdate, temptime);
+                dbhelper.insert(tempdate, temptime);*/
             }
         });
         dbhelper = new BlueToothDBHelper(getApplicationContext(), "poopinfo.db", null, 1);
@@ -344,11 +344,9 @@ public class MainPage extends BlunoLibrary {
         //Toast.makeText(getApplicationContext(), "before:"+thestring, Toast.LENGTH_SHORT).show();
 
         /*BlockCipherMode cipher = new LEA.ECB();
-
         Log.e("TAG", "before:"+string+": "+(int)string.charAt(0));
         //Toast.makeText(getApplicationContext(), "before:"+string+": "+(int)string.charAt(0), Toast.LENGTH_SHORT).show();
         byte[] key = {0x7f, 0x7e, 0x7d, 0x7c, 0x7b, 0x7a, 0x79, 0x78, 0x77, 0x76, 0x75, 0x74, 0x73, 0x72, 0x71, 0x70};
-
         byte[] test;
         //test=theint;
         //test = inttobyte(theint);
@@ -358,16 +356,12 @@ public class MainPage extends BlunoLibrary {
         Log.e("TAG", "before decrypt:"+test);
         //Toast.makeText(getApplicationContext(), "before decrypt:"+test, Toast.LENGTH_SHORT).show();
         System.out.println(test.length);
-
         /*cipher.init(BlockCipher.Mode.ENCRYPT, key);
-
         byte[] enc = cipher.update(test);
         String text = new String(enc);
         Toast.makeText(getApplicationContext(), "encrypt:"+text, Toast.LENGTH_SHORT).show();
         cipher.init(BlockCipher.Mode.DECRYPT, key);
-
         byte[] dec = cipher.update(test);
-
         String text = new String(dec);
         Log.e("TAG", "decrypt:"+dec);
         //Toast.makeText(getApplicationContext(), "decrypt:"+dec, Toast.LENGTH_SHORT).show();
