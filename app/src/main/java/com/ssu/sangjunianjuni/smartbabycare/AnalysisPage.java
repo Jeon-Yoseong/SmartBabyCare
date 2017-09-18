@@ -33,6 +33,9 @@ public class AnalysisPage extends AppCompatActivity {
     private AnalysisSpecificGraphic heartbeatgraphic, poopgraphic;
 
     private String USER_ID;
+    private String NAME;
+    private String HEIGHT;
+    private String WEIGHT;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -43,6 +46,9 @@ public class AnalysisPage extends AppCompatActivity {
         // 사용자 아이디 저장
         Intent getUSER_ID = getIntent();
         USER_ID = getUSER_ID.getStringExtra("USER_ID");
+        NAME = getUSER_ID.getStringExtra("NAME");
+        HEIGHT = getUSER_ID.getStringExtra("HEIGHT");
+        WEIGHT = getUSER_ID.getStringExtra("WEIGHT");
 
         Toast.makeText(getApplicationContext(), ""+USER_ID, Toast.LENGTH_SHORT).show();
 
