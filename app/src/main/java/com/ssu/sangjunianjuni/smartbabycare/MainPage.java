@@ -51,6 +51,9 @@ import kr.re.nsr.crypto.symm.LEA;
 public class MainPage extends BlunoLibrary {
 
     private String USER_ID;
+    private String NAME;
+    private String HEIGHT;
+    private String WEIGHT;
 
     Button measureBtn;
     //블루투스 수신 테스트용 텍스트들
@@ -78,7 +81,9 @@ public class MainPage extends BlunoLibrary {
         //intent로 넘어온 USER_ID 값
         Intent intent = getIntent();
         USER_ID = intent.getStringExtra("USER_ID");
-
+        NAME = intent.getStringExtra("NAME");
+        HEIGHT = intent.getStringExtra("HEIGHT");
+        WEIGHT = intent.getStringExtra("WEIGHT");
         //블루투스 관련 설정
         onCreateProcess();                                                        //onCreate Process by BlunoLibrary
         serialBegin(115200);
@@ -116,6 +121,9 @@ public class MainPage extends BlunoLibrary {
                         drawerlayout1.closeDrawer(GravityCompat.START);
                         Intent main_to_analysis = new Intent(getApplicationContext(), AnalysisPage.class);
                         main_to_analysis.putExtra("USER_ID", USER_ID);
+                        main_to_analysis.putExtra("NAME", NAME);
+                        main_to_analysis.putExtra("HEIGHT", HEIGHT);
+                        main_to_analysis.putExtra("WEIGHT", WEIGHT);
                         startActivity(main_to_analysis);
                         break;
                     case 2:
